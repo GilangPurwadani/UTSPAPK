@@ -30,7 +30,7 @@
 
         }
         .sidebar{
-            background-color: rgb(34, 34, 34);
+            background-color: rgb(22 142 147) !important;
         }
     </style>
 </head>
@@ -124,9 +124,11 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h5 class="fa-solid fa-bars"> Input Barang </h5>
-                    </div>
+                    <button type="button" data-toggle="modal" data-target="#addBarangModal"
+                    onclick="tambah()" class="btn btn-sm light btn-primary"
+                    data-animation="slide" data-plugin="custommodal" data-overlaySpeed="200"
+                    data-overlayColor="#36404a">Data Barang
+                    </button>
 
                     <div class="row">
                         <div class="col-12">
@@ -136,12 +138,20 @@
                                         <button type="button" data-toggle="modal" data-target="#addBarangModal"
                                             onclick="tambah()" class="btn btn-sm light btn-primary"
                                             data-animation="slide" data-plugin="custommodal" data-overlaySpeed="200"
-                                            data-overlayColor="#36404a">Tambah Barang
+                                            data-overlayColor="#36404a" style="background-color: rgb(22 142 147) !important;">Tambah Barang
                                         </button>
-                                            <button class="btn btn-sm btn-primary mt-4 mb-4" onclick="ExportToExcel('xlsx')"
+                                            <button class="btn btn-sm btn-secondary mt-4 mb-4" onclick="ExportToExcel('xlsx')"
                                                >Export Excel</button>
                                     </div>
                                 </div>
+
+                                <div class="form-group" style="margin-bottom: 20px;">
+                                    <input class="form-control" id="searchValue" onkeyup="search()"
+                                        placeholder="Cari Barang...">
+                                    <div id="result">
+                                    </div>
+                                </div>
+
                                 <div class="card-body table-responsive">
                                     <table id="tabel" class="table" style="width:100% !important">
                                     </table>
@@ -301,6 +311,26 @@
             });
         }
     </script> -->
+    <script>
+        function search(value) {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("searchValue");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("tabel");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[1];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
     <script>
         function deleteAlert(id) {
             Swal.fire({

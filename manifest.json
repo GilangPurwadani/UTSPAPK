@@ -1,7 +1,7 @@
 {
   "name": "Toko Grosir",
   "short_name": "Toko Grosir",
-  "description": "Membuat Aplikasi Toko Grosir dengan javascript PWA ",
+  "description": "Aplikasi Toko Grosir",
   "icons": [{
       "src": "assets/img/icon.png",
       "type": "image/png"
